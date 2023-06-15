@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="output"></div>
+
+  <script>
+    function isPrime(number) {
+      for (let i = 2, sqrt = Math.sqrt(number); i <= sqrt; i++) {
+        if (number % i === 0) {
+          return false;
+        }
+      }
+      return number > 1;
+    }
+
+    function printNumbers() {
+      const outputDiv = document.getElementById('output');
+      let outputHTML = '';
+
+      for (let i = 1; i <= 100; i++) {
+        outputHTML += i;
+
+        let multiples = [];
+        for (let j = 1; j <= i; j++) {
+          if (i % j === 0) {
+            multiples.push(j);
+          }
+        }
+
+        outputHTML += ' [' + multiples.join(', ') + ']';
+
+        if (isPrime(i)) {
+          outputHTML += ' [PRIMO]';
+        }
+
+        outputHTML += '<br>';
+      }
+
+      outputDiv.innerHTML = outputHTML;
+    }
+
+    printNumbers();
+  </script>
+</body>
+</html>
